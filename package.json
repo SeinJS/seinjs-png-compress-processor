@@ -1,0 +1,43 @@
+{
+  "name": "seinjs-png-compress-processor",
+  "version": "0.8.0",
+  "description": "Compress png files with webpack loaders for Sein.js.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "npm run build && node ./test.js",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "authors": [
+    {
+      "name": "dtysky",
+      "email": "dtysky@outlook.com"
+    }
+  ],
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "keywords": [
+    "Sein.js",
+    "Processor",
+    "PNG",
+    "Compress"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "upng-js": "^2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SeinJS/seinjs-png-compress-processor.git"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.8",
+    "fs-extra": "^8.1.0",
+    "tslint": "^4.1.1",
+    "tslint-microsoft-contrib": "^4.0.0",
+    "typescript": "3.2.2"
+  }
+}
