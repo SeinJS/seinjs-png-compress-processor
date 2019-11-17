@@ -13,12 +13,12 @@ function debug(msg: string) {
 }
 
 export = class SeinJSPNGCompressProcessor {
-  public test: RegExp | ((filePath: string) => boolean) = /\.png/g;
+  public test: RegExp | ((filePath: string) => boolean);
 
-  private _psize: number = 256;
+  private _psize: number;
   private _custom: (filePath: string) => {
     psize?: number;
-  } = null;
+  };
 
   constructor(options: {
     /**
@@ -41,9 +41,9 @@ export = class SeinJSPNGCompressProcessor {
     }
   }) {
     if (options) {
-      this.test = options.test;
-      this._psize = options.psize || this._psize;
-      this._custom = options.custom || this._custom;
+      this.test = options.test || /\.png/g;
+      this._psize = options.psize || 256;
+      this._custom = options.custom || null;
     }
   }
 
