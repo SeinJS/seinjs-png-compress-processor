@@ -38,6 +38,7 @@ export = class SeinJSPNGCompressProcessor {
      */
     custom?(filePath: string): {
       psize?: number;
+      skip?: boolean;
     }
   }) {
     if (options) {
@@ -55,20 +56,24 @@ export = class SeinJSPNGCompressProcessor {
         data = new Buffer(data);
       }
 
-      const cpOptions = {psize: this._psize};
+      const cpOptions = {psize: this._psize, skip: false};
       if (this._custom) {
         Object.assign(cpOptions, this._custom(filePath, data) || {});
       }
 
       debug(`${filePath}, ${JSON.stringify(cpOptions)}`);
 
-      try {
-        const png = PNG.decode(data);
-        const res = PNG.encode([png.data], png.width, png.height, cpOptions.psize);
-        data = Buffer.from(res);
-        console.error(`PNG Compress success: ${filePath}`);
-      } catch(error) {
-        console.error(`PNG Compress error: file ${filePath}, ${error.message}`);
+      if (cpOptions.skip) {
+        console.log(`PNG Compress skip: ${filePath}`);
+      } else {
+        try {
+          const png = PNG.decode(data);
+          const res = PNG.encode([png.data], png.width, png.height, cpOptions.psize);
+          data = Buffer.from(res);
+          console.log(`PNG Compress success: ${filePath}`);
+        } catch(error) {
+          console.error(`PNG Compress error: file ${filePath}, ${error.message}`);
+        }
       }
 
       resolve(data);

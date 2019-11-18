@@ -42,9 +42,9 @@ in `webpack.config.js`:
                       /**
                        * You can overwrite settings for each file.
                        */
-                      custom: (filePath: string) => {
+                      custom: (filePath: string, data: Buffer) => {
                         if (/haha/.test(filePath)) {
-                          return {psize: 100};
+                          return {psize: 100, skip: false};
                         }
                       }
                     })
