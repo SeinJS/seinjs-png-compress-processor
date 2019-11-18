@@ -16,7 +16,7 @@ export = class SeinJSPNGCompressProcessor {
   public test: RegExp | ((filePath: string) => boolean);
 
   private _psize: number;
-  private _custom: (filePath: string) => {
+  private _custom: (filePath: string, data: Buffer) => {
     psize?: number;
   };
 
@@ -57,7 +57,7 @@ export = class SeinJSPNGCompressProcessor {
 
       const cpOptions = {psize: this._psize};
       if (this._custom) {
-        Object.assign(cpOptions, this._custom(filePath) || {});
+        Object.assign(cpOptions, this._custom(filePath, data) || {});
       }
 
       debug(`${filePath}, ${JSON.stringify(cpOptions)}`);
