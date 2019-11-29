@@ -1,6 +1,6 @@
 {
   "name": "seinjs-png-compress-processor",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Compress png files with webpack loaders for Sein.js.",
   "main": "index.js",
   "types": "index.d.ts",

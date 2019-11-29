@@ -15,7 +15,7 @@ function debug(msg: string) {
 export = class SeinJSPNGCompressProcessor {
   public test: RegExp | ((filePath: string) => boolean);
 
-  private _psize: number;
+  private _psize: number = 256;
   private _custom: (filePath: string, data: Buffer) => {
     psize?: number;
   };
@@ -68,7 +68,7 @@ export = class SeinJSPNGCompressProcessor {
       } else {
         try {
           const png = PNG.decode(data);
-          const res = PNG.encode([png.data], png.width, png.height, cpOptions.psize);
+          const res = PNG.encode([PNG.toRGBA8(png)], png.width, png.height, cpOptions.psize);
           data = Buffer.from(res);
           console.log(`PNG Compress success: ${filePath}`);
         } catch(error) {
