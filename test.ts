@@ -21,9 +21,13 @@ actions.push(processor.process({data: fs.readFileSync(f2), filePath: f2}));
 
 actions.push(processor2.process({data: fs.readFileSync(f2), filePath: f2}));
 
+const f3 = './assets/loading.png';
+actions.push(processor.process({data: fs.readFileSync(f3), filePath: f3}));
+
 Promise.all(actions).then(res => {
   console.log(res);
 
-  fs.writeFileSync('./test.png', res[1]);
-  fs.writeFileSync('./test2.png', res[2]);
+  res.forEach((r, i) => {
+    fs.writeFileSync(`./test${i}.png`, r);
+  })
 });

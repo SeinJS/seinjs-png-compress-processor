@@ -68,7 +68,7 @@ export = class SeinJSPNGCompressProcessor {
       } else {
         try {
           const png = PNG.decode(data);
-          const res = PNG.encode([PNG.toRGBA8(png)], png.width, png.height, cpOptions.psize);
+          const res = PNG.encode([PNG.toRGBA8(png)[0]], png.width, png.height, cpOptions.psize);
           data = Buffer.from(res);
           console.log(`PNG Compress success: ${filePath}`);
         } catch(error) {
